@@ -54,6 +54,10 @@ module=Test::Cucumber
 owner=SARGIE
 co-maints=JOHND
 ----
+module=Apache::Test
+owner=APML
+co-maints=APML DOUGM DOUGM GEOFF
+----
 END_EXPECTED
 
 is($string, $expected, "rendered permissions");
