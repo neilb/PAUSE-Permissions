@@ -8,6 +8,7 @@ use PAUSE::Permissions;
 
 my $NO_MODULE_RENDER = '||module=undef||owner=undef||co-maints=||';
 my %TESTS = (
+    'Apache::Test'         => '||module=Apache::Test||owner=APML||co-maints=APML,DOUGM,DOUGM,GEOFF||',
     'constant'             => '||module=constant||owner=SAPER||co-maints=P5P,PERL||',
     'constant::Atom'       => '||module=constant::Atom||owner=JOHNWRDN||co-maints=NEILB||',
     'Math::Complex'        => '||module=Math::Complex||owner=RAM||co-maints=JHI,PERL,ZEFRAM||',

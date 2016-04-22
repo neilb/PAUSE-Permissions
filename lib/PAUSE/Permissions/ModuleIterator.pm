@@ -52,7 +52,7 @@ sub next_module
             $line =~ s/[\r\n]+$//;
             my ($module, $user, $permission) = split(/,/, $line);
             $user = uc($user);
-            if (defined($current_module) && $module ne $current_module) {
+            if (defined($current_module) && lc($module) ne lc($current_module)) {
                 $self->_cached_line($line);
                 my $module_name = $current_module;
                 $current_module = undef;
