@@ -1,4 +1,4 @@
-#!/usr/bin/env perl 
+#!perl 
 
 package PAUSE::Permissions::pause_permissions;
 
@@ -57,7 +57,7 @@ sub run {
     my $self = shift;
 
     return $self->print_author if $self->author;
-    
+
     $self->print_ownership($_) for @{ $self->modules };
 }
 
@@ -74,17 +74,17 @@ sub print_author {
         $self->print_ownership($mod) if
             any { $_ eq $author } $mod->owner, ( $mod->co_maintainers ) x $comaints;
     }
-    
-    
+
+
 }
 
 
 sub print_ownership {
     my( $self, $m ) = @_;
 
-    my $module = ref $m ? $m : ( 
+    my $module = ref $m ? $m : (
         $self->pp->module_permissions($m)
-            or return $self->silent || warn "Module '$m' not found\n" 
+            or return $self->silent || warn "Module '$m' not found\n"
     );
 
     say join "\t", $module->name, $module->owner || 'none', ( $module->co_maintainers ) x !$self->nocomaints;
@@ -104,7 +104,7 @@ pause-permissions - list the maintainers of CPAN modules
 
 =head1 DESCRIPTION
 
-Prints out the maintainers of the modules given either as arguments, or via 
+Prints out the maintainers of the modules given either as arguments, or via
 STDIN. The owner of the module is always printed first.
 
 If a module doesn't exist, a warning is issued.
