@@ -13,3 +13,8 @@ Math::Complex,perl,c
 CPAN::Test::Reporter,SKUD,c
 Test::Cucumber,JOHND,f
 Test::Cucumber,SARGIE,m
+Apache::Test,APML,f
+Apache::test,APML,m
+Apache::Test,DOUGM,c
+Apache::test,DOUGM,c
+Apache::Test,GEOFF,c
