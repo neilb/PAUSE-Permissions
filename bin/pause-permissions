@@ -1,4 +1,4 @@
-#!/usr/bin/env perl 
+#!/usr/bin/perl
 
 package PAUSE::Permissions::pause_permissions;
 
