@@ -19,11 +19,12 @@ use HTTP::Tiny;
 my $DISTNAME                        = 'PAUSE-Permissions';
 my $BASENAME                        = '06perms.txt';
 my $DEFAULT_PERMISSION_REQUESTED    = 'upload';
+my $DEFAULT_URL                     = 'http://www.cpan.org/modules/06perms.txt';
 
 has 'url' =>
     (
      is      => 'ro',
-     default => sub { return 'http://www.cpan.org/modules/06perms.txt'; },
+     default => sub { return $ENV{PAUSE_PERMISSIONS_URL} || $DEFAULT_URL; },
     );
 
 has 'path'         => (is => 'ro' );
@@ -343,6 +344,9 @@ The constructor will C<die()> if the file doesn't exist, or isn't readable.
 
 B<url>: the URL for 06perms.txt;
 defaults to L<http://www.cpan.org/modules/06perms.txt>
+
+This can also be passed in via the environment. Set C<PAUSE_PERMISSIONS_URL>
+in your shell and PAUSE::Permissions will use that instead if no B<url> is given.
 
 =item *
 
