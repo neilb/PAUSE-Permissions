@@ -9,6 +9,7 @@ use PAUSE::Permissions::ModuleIterator;
 use PAUSE::Permissions::EntryIterator;
 use File::HomeDir;
 
+use Compress::Zlib        qw/ memGunzip /;
 use File::Spec::Functions qw/ catfile  /;
 use HTTP::Date            qw/ time2str / ;
 use Carp                  qw/ croak    /;
@@ -16,14 +17,13 @@ use Time::Duration::Parse qw/ parse_duration /;
 
 use HTTP::Tiny;
 
-my $DISTNAME                        = 'PAUSE-Permissions';
-my $BASENAME                        = '06perms.txt';
-my $DEFAULT_PERMISSION_REQUESTED    = 'upload';
+my $BASENAME                     = '06perms.txt.gz';
+my $DEFAULT_PERMISSION_REQUESTED = 'upload';
 
 has 'url' =>
     (
      is      => 'ro',
-     default => sub { return 'http://www.cpan.org/modules/06perms.txt'; },
+     default => sub { return 'http://www.cpan.org/modules/' . $BASENAME; },
     );
 
 has 'path'         => (is => 'ro' );
@@ -102,9 +102,10 @@ sub _transform_and_cache
     my ($self, $response) = @_;
     my $inheader = 1;
     my @lines;
+    my $content = memGunzip($response->{content});
 
     LINE:
-    while ($response->{content} =~ m!^(.*)$!gm) {
+    while ($content =~ m!^(.*)$!gm) {
         my $line = $1;
         if ($line =~ /^$/ && $inheader) {
             $inheader = 0;
