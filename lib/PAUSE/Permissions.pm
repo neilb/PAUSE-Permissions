@@ -16,14 +16,13 @@ use Time::Duration::Parse qw/ parse_duration /;
 
 use HTTP::Tiny;
 
-my $DISTNAME                        = 'PAUSE-Permissions';
-my $BASENAME                        = '06perms.txt';
-my $DEFAULT_PERMISSION_REQUESTED    = 'upload';
+my $BASENAME                     = '06perms.txt';
+my $DEFAULT_PERMISSION_REQUESTED = 'upload';
 
 has 'url' =>
     (
      is      => 'ro',
-     default => sub { return 'http://www.cpan.org/modules/06perms.txt'; },
+     default => sub { return 'http://www.cpan.org/modules/' . $BASENAME; },
     );
 
 has 'path'         => (is => 'ro' );
